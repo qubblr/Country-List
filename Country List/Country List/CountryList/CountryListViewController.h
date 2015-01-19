@@ -12,7 +12,7 @@
 - (void)didSelectCountry:(NSDictionary *)country;
 @end
 
-@interface CountryListViewController : UIViewController
+@interface CountryListViewController : UIViewController <UITableViewDataSource>
 
 @property (nonatomic, assign) id<CountryListViewDelegate>delegate;
 

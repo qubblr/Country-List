@@ -10,10 +10,12 @@
 #import "CountryListDataSource.h"
 #import "CountryCell.h"
 
+#import "NSDictionary+CountryCode.h"
+
 @interface CountryListViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *dataRows;
+@property (strong, nonatomic) NSArray *data;
 @end
 
 @implementation CountryListViewController
@@ -34,7 +36,7 @@
     // Do any additional setup after loading the view from its nib.
     
     CountryListDataSource *dataSource = [[CountryListDataSource alloc] init];
-    _dataRows = [dataSource countries];
+    self.data = [dataSource countries];
     [_tableView reloadData];
     
 }
@@ -45,14 +47,55 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setData:(NSArray *)dataRows {
+    SEL selector = @selector(countryName);
+    NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
+    
+    // Add empty mutable array for each section.
+    NSMutableArray *mutableSections = [[NSMutableArray alloc] initWithCapacity:sectionTitlesCount];
+    for (NSUInteger idx = 0; idx < sectionTitlesCount; idx++) {
+        [mutableSections addObject:[NSMutableArray array]];
+    }
+    
+    // Assigne each object to it's section
+    for (id object in dataRows) {
+        NSInteger sectionNumber = [[UILocalizedIndexedCollation currentCollation] sectionForObject:object collationStringSelector:selector];
+        [[mutableSections objectAtIndex:sectionNumber] addObject:object];
+    }
+    
+    // Sort the rows in each section.
+    for (NSUInteger idx = 0; idx < sectionTitlesCount; idx++) {
+        NSArray *objectsForSection = [mutableSections objectAtIndex:idx];
+        [mutableSections replaceObjectAtIndex:idx withObject:[[UILocalizedIndexedCollation currentCollation] sortedArrayFromArray:objectsForSection collationStringSelector:selector]];
+    }
+    
+    _data = mutableSections;
+}
+
+
+
 #pragma mark - UITableView Datasource
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return [[UILocalizedIndexedCollation currentCollation] sectionTitles];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
+}
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.data.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.dataRows count];
+    NSLog(@"Number of rows in section: %ld = %lu", (long)section, (unsigned long)[self.data[section] count]);
+    return [self.data[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,8 +107,11 @@
         cell = [[CountryCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.text = [[_dataRows objectAtIndex:indexPath.row] valueForKey:kCountryName];
-    cell.detailTextLabel.text = [[_dataRows objectAtIndex:indexPath.row] valueForKey:kCountryCallingCode];
+    NSString *countryName = [self.data [indexPath.section][indexPath.row] valueForKey:kCountryName];
+    NSString *countryCode = [self.data [indexPath.section][indexPath.row] valueForKey:kCountryCallingCode];
+    
+    cell.textLabel.text = countryName;
+    cell.detailTextLabel.text = countryCode;
     
     return cell;
 }
@@ -82,7 +128,7 @@
 - (IBAction)done:(id)sender
 {
     if ([_delegate respondsToSelector:@selector(didSelectCountry:)]) {
-        [self.delegate didSelectCountry:[_dataRows objectAtIndex:[_tableView indexPathForSelectedRow].row]];
+        [self.delegate didSelectCountry:[_data objectAtIndex:[_tableView indexPathForSelectedRow].row]];
         [self dismissViewControllerAnimated:YES completion:NULL];
     } else {
         NSLog(@"CountryListView Delegate : didSelectCountry not implemented");

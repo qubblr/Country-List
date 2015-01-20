@@ -33,8 +33,14 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIBarButtonItem *cancelButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                      target:self
+                                                                                      action:@selector(cancelButtonPressed)];
+    self.navigationItem.leftBarButtonItem = cancelButtonItem;
+}
+
+- (void)cancelButtonPressed {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)configureSearchBarDisplayController {

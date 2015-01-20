@@ -40,7 +40,6 @@
 - (void)configureSearchBarDisplayController {
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0)];
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    searchBar.delegate = self;
     [searchBar sizeToFit];
     
     self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];

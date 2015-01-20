@@ -8,6 +8,7 @@
 
 #import "CountryCodesViewController.h"
 #import "CountryListDataSource.h"
+#import "NSDictionary+CountryCode.h"
 
 @interface CountryCodesViewController ()
 @property (strong, nonatomic) NSArray *initialCountryList;
@@ -27,6 +28,33 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)setCountryList:(NSArray *)countryList {
+    _initialCountryList = countryList;
+    
+    SEL selector = @selector(countryName);
+    NSInteger sectionTitlesCount = [[[UILocalizedIndexedCollation currentCollation] sectionTitles] count];
+    
+    // Add empty mutable array for each section.
+    NSMutableArray *mutableSections = [[NSMutableArray alloc] initWithCapacity:sectionTitlesCount];
+    for (NSUInteger idx = 0; idx < sectionTitlesCount; idx++) {
+        [mutableSections addObject:[NSMutableArray array]];
+    }
+    
+    // Assigne each object to it's section
+    for (id country in countryList) {
+        NSInteger sectionNumber = [[UILocalizedIndexedCollation currentCollation] sectionForObject:country collationStringSelector:selector];
+        [[mutableSections objectAtIndex:sectionNumber] addObject:country];
+    }
+    
+    // Sort the rows in each section.
+    for (NSUInteger idx = 0; idx < sectionTitlesCount; idx++) {
+        NSArray *objectsForSection = [mutableSections objectAtIndex:idx];
+        [mutableSections replaceObjectAtIndex:idx withObject:[[UILocalizedIndexedCollation currentCollation] sortedArrayFromArray:objectsForSection collationStringSelector:selector]];
+    }
+    
+    _countryList = countryList;
 }
 
 #pragma mark - Table view data source

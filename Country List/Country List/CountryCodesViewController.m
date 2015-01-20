@@ -11,6 +11,8 @@
 #import "NSDictionary+CountryCode.h"
 #import "CountryCell.h"
 
+#define ViewControllerTitle NSLocalizedString(@"Country", nil);
+
 @interface CountryCodesViewController ()
 @property (strong, nonatomic) NSMutableArray *filteredCountryList;
 @property (strong, nonatomic) NSArray *initialCountryList;
@@ -23,8 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureNavigationBar];
     [self configureSearchBarDisplayController];
-    
+
     [self.tableView registerClass:[CountryCell class] forCellReuseIdentifier:@"Cell"];
     
     self.countryList = [[[CountryListDataSource alloc] init] countries];
@@ -33,14 +36,19 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    UIBarButtonItem *cancelButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                                                      target:self
-                                                                                      action:@selector(cancelButtonPressed)];
-    self.navigationItem.leftBarButtonItem = cancelButtonItem;
+
 }
 
 - (void)cancelButtonPressed {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)configureNavigationBar {
+    UIBarButtonItem *cancelButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                      target:self
+                                                                                      action:@selector(cancelButtonPressed)];
+    self.navigationItem.leftBarButtonItem = cancelButtonItem;
+    self.title = ViewControllerTitle;
 }
 
 - (void)configureSearchBarDisplayController {

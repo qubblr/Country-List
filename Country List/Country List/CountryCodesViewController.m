@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureSearchBarDisplayController];
     
     [self.tableView registerClass:[CountryCell class] forCellReuseIdentifier:@"Cell"];
     
@@ -31,6 +32,30 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)configureSearchBarDisplayController {
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 0)];
+    searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    searchBar.delegate = self;
+    [searchBar sizeToFit];
+    
+    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    
+    searchDisplayController.searchResultsDataSource = self;
+    searchDisplayController.searchResultsDelegate = self;
+    searchDisplayController.delegate = self;
+    
+    self.tableView.tableHeaderView = searchBar;
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    searchBar.showsCancelButton = YES;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    searchBar.showsCancelButton = NO;
+    [searchBar resignFirstResponder];
 }
 
 - (void)setCountryList:(NSArray *)countryList {

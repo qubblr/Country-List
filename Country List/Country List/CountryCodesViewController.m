@@ -71,7 +71,6 @@
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[c] %@", searchText];
     [self.filteredCountryList addObjectsFromArray:[self.initialCountryList filteredArrayUsingPredicate:predicate]];
-    NSLog(@"Filtered :%@", self.filteredCountryList);
 }
 
 - (void)setCountryList:(NSArray *)countryList {

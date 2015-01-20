@@ -12,6 +12,7 @@
 #import "CountryCell.h"
 
 @interface CountryCodesViewController ()
+@property (strong, nonatomic) NSMutableArray *filteredCountryList;
 @property (strong, nonatomic) NSArray *initialCountryList;
 @property (strong, nonatomic) NSArray *countryList;
 
@@ -51,13 +52,26 @@
     self.tableView.tableHeaderView = searchBar;
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    searchBar.showsCancelButton = YES;
+#pragma mark - Search bar display controller delegate
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    [self filterContentForSearchText:searchString];
+    return YES;
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    searchBar.showsCancelButton = NO;
-    [searchBar resignFirstResponder];
+- (NSMutableArray *)filteredCountryList {
+    if (!_filteredCountryList) {
+        _filteredCountryList = [[NSMutableArray alloc] initWithCapacity:self.initialCountryList.count];
+    }
+    return _filteredCountryList;
+}
+
+- (void)filterContentForSearchText:(NSString*)searchText {
+    [self.filteredCountryList removeAllObjects];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name BEGINSWITH[c] %@", searchText];
+    [self.filteredCountryList addObjectsFromArray:[self.initialCountryList filteredArrayUsingPredicate:predicate]];
+    NSLog(@"Filtered :%@", self.filteredCountryList);
 }
 
 - (void)setCountryList:(NSArray *)countryList {
@@ -103,11 +117,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"Number of rows in section: %ld = %lu", (long)section, (unsigned long)[self.countryList[section] count]);
-    return [self.countryList[section] count];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [self.filteredCountryList count];
+    } else {
+        return [self.countryList[section] count];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.countryList count];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return 1;
+    } else {
+        return [self.countryList count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -119,11 +141,16 @@
         cell = [[CountryCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
     }
     
-    NSString *countryName = [self.countryList [indexPath.section][indexPath.row] valueForKey:kCountryName];
-    NSString *countryCode = [self.countryList [indexPath.section][indexPath.row] valueForKey:kCountryCallingCode];
+    NSDictionary *country = nil;
     
-    cell.textLabel.text = countryName;
-    cell.detailTextLabel.text = countryCode;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        country = self.filteredCountryList[indexPath.row];
+    } else {
+        country = self.countryList [indexPath.section][indexPath.row];
+    }
+    
+    cell.textLabel.text = [country valueForKey:kCountryName];
+    cell.detailTextLabel.text = [country valueForKey:kCountryCallingCode];
     
     return cell;
 }

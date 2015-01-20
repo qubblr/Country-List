@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CountryCodesViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface CountryCodesViewController : UITableViewController <UISearchDisplayDelegate>
 
 @end

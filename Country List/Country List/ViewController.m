@@ -7,8 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "CountryListViewController.h"
-#import "CountryCodesViewController.h"
+#import "CountrySelectionViewController.h"
 
 @interface ViewController ()
 
@@ -31,9 +30,6 @@
 - (IBAction)show:(id)sender {
     
 //    CountryListViewController *cv = [[CountryListViewController alloc] initWithNibName:@"CountryListViewController" delegate:self];
-    CountryCodesViewController *cc = [[CountryCodesViewController alloc] init];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:cc];
-    [self presentViewController:nc animated:YES completion:NULL];
 }
 
 - (void)didSelectCountry:(NSDictionary *)country

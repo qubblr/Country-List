@@ -116,7 +116,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"Number of rows in section: %ld = %lu", (long)section, (unsigned long)[self.countryList[section] count]);
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [self.filteredCountryList count];
     } else {

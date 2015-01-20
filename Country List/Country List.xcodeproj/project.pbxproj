@@ -23,8 +23,9 @@
 		0EF0F50A1861F7EC007CF9B0 /* Country_ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF0F5091861F7EC007CF9B0 /* Country_ListTests.m */; };
 		0EF0F5151861F969007CF9B0 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 0EF0F5141861F969007CF9B0 /* countries.json */; };
 		0EF0F51D1861FB0C007CF9B0 /* CountryDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF0F51C1861FB0C007CF9B0 /* CountryDataProvider.m */; };
-		841387E51A6E2D700029D9B0 /* CountryCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841387E41A6E2D700029D9B0 /* CountryCodesViewController.m */; };
+		841387E51A6E2D700029D9B0 /* CountrySelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841387E41A6E2D700029D9B0 /* CountrySelectionViewController.m */; };
 		84BFBBCD1A6D3E2B00522493 /* NSDictionary+CountryCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BFBBCC1A6D3E2B00522493 /* NSDictionary+CountryCode.m */; };
+		84FA44F21A6E5A3100CC3549 /* CountryCodePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FA44F11A6E5A3100CC3549 /* CountryCodePickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,10 +61,12 @@
 		0EF0F5141861F969007CF9B0 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = countries.json; path = CountryList/countries.json; sourceTree = "<group>"; };
 		0EF0F51B1861FB0C007CF9B0 /* CountryDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryDataProvider.h; path = CountryList/CountryDataProvider.h; sourceTree = "<group>"; };
 		0EF0F51C1861FB0C007CF9B0 /* CountryDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryDataProvider.m; path = CountryList/CountryDataProvider.m; sourceTree = "<group>"; };
-		841387E31A6E2D700029D9B0 /* CountryCodesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryCodesViewController.h; sourceTree = "<group>"; };
-		841387E41A6E2D700029D9B0 /* CountryCodesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryCodesViewController.m; sourceTree = "<group>"; };
+		841387E31A6E2D700029D9B0 /* CountrySelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountrySelectionViewController.h; sourceTree = "<group>"; };
+		841387E41A6E2D700029D9B0 /* CountrySelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountrySelectionViewController.m; sourceTree = "<group>"; };
 		84BFBBCB1A6D3E2B00522493 /* NSDictionary+CountryCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+CountryCode.h"; path = "../NSDictionary+CountryCode.h"; sourceTree = "<group>"; };
 		84BFBBCC1A6D3E2B00522493 /* NSDictionary+CountryCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+CountryCode.m"; path = "../NSDictionary+CountryCode.m"; sourceTree = "<group>"; };
+		84FA44F01A6E5A3100CC3549 /* CountryCodePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryCodePickerViewController.h; sourceTree = "<group>"; };
+		84FA44F11A6E5A3100CC3549 /* CountryCodePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryCodePickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,9 +170,11 @@
 		0EF0F5131861F922007CF9B0 /* CountryList */ = {
 			isa = PBXGroup;
 			children = (
-				841387E31A6E2D700029D9B0 /* CountryCodesViewController.h */,
-				841387E41A6E2D700029D9B0 /* CountryCodesViewController.m */,
+				841387E31A6E2D700029D9B0 /* CountrySelectionViewController.h */,
+				841387E41A6E2D700029D9B0 /* CountrySelectionViewController.m */,
 				84BFBBCB1A6D3E2B00522493 /* NSDictionary+CountryCode.h */,
+				84FA44F01A6E5A3100CC3549 /* CountryCodePickerViewController.h */,
+				84FA44F11A6E5A3100CC3549 /* CountryCodePickerViewController.m */,
 				84BFBBCC1A6D3E2B00522493 /* NSDictionary+CountryCode.m */,
 				0EF0F5141861F969007CF9B0 /* countries.json */,
 				0EF0F51B1861FB0C007CF9B0 /* CountryDataProvider.h */,
@@ -276,10 +281,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				841387E51A6E2D700029D9B0 /* CountryCodesViewController.m in Sources */,
+				841387E51A6E2D700029D9B0 /* CountrySelectionViewController.m in Sources */,
 				0EF0F4F51861F7EC007CF9B0 /* ViewController.m in Sources */,
 				0EF0F4EF1861F7EC007CF9B0 /* AppDelegate.m in Sources */,
 				0EF0F4EB1861F7EC007CF9B0 /* main.m in Sources */,
+				84FA44F21A6E5A3100CC3549 /* CountryCodePickerViewController.m in Sources */,
 				84BFBBCD1A6D3E2B00522493 /* NSDictionary+CountryCode.m in Sources */,
 				0EF0F51D1861FB0C007CF9B0 /* CountryDataProvider.m in Sources */,
 			);

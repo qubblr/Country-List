@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "CountrySelectionViewController.h"
+#import "CountryCodePickerViewController.h"
 
 @interface ViewController ()
 
@@ -28,13 +28,14 @@
 }
 
 - (IBAction)show:(id)sender {
+    CountryCodePickerViewController *cs = [[CountryCodePickerViewController alloc] initWithCompletionBlock:^(NSDictionary *county) {
+        if (county) {
+            NSLog(@"%@", county);
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
     
-//    CountryListViewController *cv = [[CountryListViewController alloc] initWithNibName:@"CountryListViewController" delegate:self];
-}
-
-- (void)didSelectCountry:(NSDictionary *)country
-{
-    NSLog(@"%@", country);
+    [self presentViewController:cs animated:YES completion:nil];
 }
 
 @end

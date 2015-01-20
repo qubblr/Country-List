@@ -9,7 +9,6 @@
 #import "CountryCodesViewController.h"
 #import "CountryListDataSource.h"
 #import "NSDictionary+CountryCode.h"
-#import "CountryCell.h"
 
 #define ViewControllerTitle NSLocalizedString(@"Country", nil);
 #define CountryCellID @"Cell"
@@ -28,8 +27,6 @@
     [super viewDidLoad];
     [self configureNavigationBar];
     [self configureSearchBarDisplayController];
-
-    [self.tableView registerClass:[CountryCell class] forCellReuseIdentifier:@"Cell"];
     
     self.countryList = [[[CountryListDataSource alloc] init] countries];
     [self.tableView reloadData];

@@ -14,6 +14,8 @@
 @interface CountryCodesViewController ()
 @property (strong, nonatomic) NSArray *initialCountryList;
 @property (strong, nonatomic) NSArray *countryList;
+
+@property (strong, nonatomic, readwrite) UISearchDisplayController *searchController;
 @end
 
 @implementation CountryCodesViewController
@@ -40,11 +42,11 @@
     searchBar.delegate = self;
     [searchBar sizeToFit];
     
-    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    self.searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     
-    searchDisplayController.searchResultsDataSource = self;
-    searchDisplayController.searchResultsDelegate = self;
-    searchDisplayController.delegate = self;
+    self.searchController.searchResultsDataSource = self;
+    self.searchController.searchResultsDelegate = self;
+    self.searchController.delegate = self;
     
     self.tableView.tableHeaderView = searchBar;
 }

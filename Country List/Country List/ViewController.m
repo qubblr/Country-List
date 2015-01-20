@@ -32,7 +32,8 @@
     
 //    CountryListViewController *cv = [[CountryListViewController alloc] initWithNibName:@"CountryListViewController" delegate:self];
     CountryCodesViewController *cc = [[CountryCodesViewController alloc] init];
-    [self presentViewController:cc animated:YES completion:NULL];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:cc];
+    [self presentViewController:nc animated:YES completion:NULL];
 }
 
 - (void)didSelectCountry:(NSDictionary *)country

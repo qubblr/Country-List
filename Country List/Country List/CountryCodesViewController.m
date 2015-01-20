@@ -116,11 +116,19 @@
 #pragma mark - Table view data source
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return @"";
+    } else {
+        return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
+    }
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return [[UILocalizedIndexedCollation currentCollation] sectionTitles];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return @[];
+    } else {
+        return [[UILocalizedIndexedCollation currentCollation] sectionTitles];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {

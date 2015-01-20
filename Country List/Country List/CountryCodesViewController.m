@@ -9,6 +9,7 @@
 #import "CountryCodesViewController.h"
 #import "CountryListDataSource.h"
 #import "NSDictionary+CountryCode.h"
+#import "CountryCell.h"
 
 @interface CountryCodesViewController ()
 @property (strong, nonatomic) NSArray *initialCountryList;
@@ -19,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.tableView registerClass:[CountryCell class] forCellReuseIdentifier:@"Cell"];
     
     self.countryList = [[[CountryListDataSource alloc] init] countries];
     [self.tableView reloadData];
@@ -54,28 +57,46 @@
         [mutableSections replaceObjectAtIndex:idx withObject:[[UILocalizedIndexedCollation currentCollation] sortedArrayFromArray:objectsForSection collationStringSelector:selector]];
     }
     
-    _countryList = countryList;
+    _countryList = mutableSections;
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return [[UILocalizedIndexedCollation currentCollation] sectionTitles];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    NSLog(@"Number of rows in section: %ld = %lu", (long)section, (unsigned long)[self.countryList[section] count]);
+    return [self.countryList[section] count];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [self.countryList count];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    UITableViewCell *cell = nil;
-    // Configure the cell...
+    static NSString *cellIdentifier = @"Cell";
+    
+    CountryCell *cell = (CountryCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell == nil) {
+        cell = [[CountryCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
+    
+    NSString *countryName = [self.countryList [indexPath.section][indexPath.row] valueForKey:kCountryName];
+    NSString *countryCode = [self.countryList [indexPath.section][indexPath.row] valueForKey:kCountryCallingCode];
+    
+    cell.textLabel.text = countryName;
+    cell.detailTextLabel.text = countryCode;
     
     return cell;
 }

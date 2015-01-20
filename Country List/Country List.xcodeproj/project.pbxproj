@@ -26,6 +26,7 @@
 		0EF0F5191861FA0E007CF9B0 /* CountryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF0F5171861FA0E007CF9B0 /* CountryListViewController.m */; };
 		0EF0F51A1861FA0E007CF9B0 /* CountryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EF0F5181861FA0E007CF9B0 /* CountryListViewController.xib */; };
 		0EF0F51D1861FB0C007CF9B0 /* CountryListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF0F51C1861FB0C007CF9B0 /* CountryListDataSource.m */; };
+		841387E51A6E2D700029D9B0 /* CountryCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841387E41A6E2D700029D9B0 /* CountryCodesViewController.m */; };
 		84BFBBCD1A6D3E2B00522493 /* NSDictionary+CountryCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BFBBCC1A6D3E2B00522493 /* NSDictionary+CountryCode.m */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,8 @@
 		0EF0F5181861FA0E007CF9B0 /* CountryListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CountryListViewController.xib; path = CountryList/CountryListViewController.xib; sourceTree = "<group>"; };
 		0EF0F51B1861FB0C007CF9B0 /* CountryListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryListDataSource.h; path = CountryList/CountryListDataSource.h; sourceTree = "<group>"; };
 		0EF0F51C1861FB0C007CF9B0 /* CountryListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryListDataSource.m; path = CountryList/CountryListDataSource.m; sourceTree = "<group>"; };
+		841387E31A6E2D700029D9B0 /* CountryCodesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryCodesViewController.h; sourceTree = "<group>"; };
+		841387E41A6E2D700029D9B0 /* CountryCodesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryCodesViewController.m; sourceTree = "<group>"; };
 		84BFBBCB1A6D3E2B00522493 /* NSDictionary+CountryCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+CountryCode.h"; path = "../NSDictionary+CountryCode.h"; sourceTree = "<group>"; };
 		84BFBBCC1A6D3E2B00522493 /* NSDictionary+CountryCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+CountryCode.m"; path = "../NSDictionary+CountryCode.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +175,8 @@
 		0EF0F5131861F922007CF9B0 /* CountryList */ = {
 			isa = PBXGroup;
 			children = (
+				841387E31A6E2D700029D9B0 /* CountryCodesViewController.h */,
+				841387E41A6E2D700029D9B0 /* CountryCodesViewController.m */,
 				84BFBBCB1A6D3E2B00522493 /* NSDictionary+CountryCode.h */,
 				84BFBBCC1A6D3E2B00522493 /* NSDictionary+CountryCode.m */,
 				0EF0F5141861F969007CF9B0 /* countries.json */,
@@ -285,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				841387E51A6E2D700029D9B0 /* CountryCodesViewController.m in Sources */,
 				0EF0F4F51861F7EC007CF9B0 /* ViewController.m in Sources */,
 				0EF0F5191861FA0E007CF9B0 /* CountryListViewController.m in Sources */,
 				0EF0F4EF1861F7EC007CF9B0 /* AppDelegate.m in Sources */,

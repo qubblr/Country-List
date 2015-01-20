@@ -12,6 +12,7 @@
 #import "CountryCell.h"
 
 #define ViewControllerTitle NSLocalizedString(@"Country", nil);
+#define CountryCellID @"Cell"
 
 @interface CountryCodesViewController ()
 @property (strong, nonatomic) NSMutableArray *filteredCountryList;
@@ -152,14 +153,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"Cell";
-    
-    CountryCell *cell = (CountryCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if(cell == nil) {
-        cell = [[CountryCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-    }
-    
     NSDictionary *country = nil;
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -167,6 +160,8 @@
     } else {
         country = self.countryList [indexPath.section][indexPath.row];
     }
+    
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CountryCellID];
     
     cell.textLabel.text = [country valueForKey:kCountryName];
     cell.detailTextLabel.text = [country valueForKey:kCountryCallingCode];

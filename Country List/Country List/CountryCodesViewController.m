@@ -7,7 +7,7 @@
 //
 
 #import "CountryCodesViewController.h"
-#import "CountryListDataSource.h"
+#import "CountryDataProvider.h"
 #import "NSDictionary+CountryCode.h"
 
 #define ViewControllerTitle NSLocalizedString(@"Country", nil);
@@ -28,7 +28,7 @@
     [self configureNavigationBar];
     [self configureSearchBarDisplayController];
     
-    self.countryList = [[[CountryListDataSource alloc] init] countries];
+    self.countryList = [[[CountryDataProvider alloc] init] countries];
     [self.tableView reloadData];
 }
 

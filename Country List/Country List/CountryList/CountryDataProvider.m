@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 Pradyumna Doddala. All rights reserved.
 //
 
-#import "CountryListDataSource.h"
+#import "CountryDataProvider.h"
 
 #define kCountriesFileName @"countries.json"
 
-@interface CountryListDataSource () {
+@interface CountryDataProvider () {
     NSArray *countriesList;
 }
 
 @end
 
-@implementation CountryListDataSource
+@implementation CountryDataProvider
 
 - (id)init {
     self = [super init];

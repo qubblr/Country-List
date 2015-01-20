@@ -12,7 +12,7 @@
 #define kCountryCallingCode @"dial_code"
 #define kCountryCode        @"code"
 
-@interface CountryListDataSource : NSObject
+@interface CountryDataProvider : NSObject
 
 - (NSArray *)countries;
 @end

@@ -22,7 +22,7 @@
 		0EF0F5081861F7EC007CF9B0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EF0F5061861F7EC007CF9B0 /* InfoPlist.strings */; };
 		0EF0F50A1861F7EC007CF9B0 /* Country_ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF0F5091861F7EC007CF9B0 /* Country_ListTests.m */; };
 		0EF0F5151861F969007CF9B0 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 0EF0F5141861F969007CF9B0 /* countries.json */; };
-		0EF0F51D1861FB0C007CF9B0 /* CountryListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF0F51C1861FB0C007CF9B0 /* CountryListDataSource.m */; };
+		0EF0F51D1861FB0C007CF9B0 /* CountryDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EF0F51C1861FB0C007CF9B0 /* CountryDataProvider.m */; };
 		841387E51A6E2D700029D9B0 /* CountryCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841387E41A6E2D700029D9B0 /* CountryCodesViewController.m */; };
 		84BFBBCD1A6D3E2B00522493 /* NSDictionary+CountryCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BFBBCC1A6D3E2B00522493 /* NSDictionary+CountryCode.m */; };
 /* End PBXBuildFile section */
@@ -58,8 +58,8 @@
 		0EF0F5071861F7EC007CF9B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0EF0F5091861F7EC007CF9B0 /* Country_ListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Country_ListTests.m; sourceTree = "<group>"; };
 		0EF0F5141861F969007CF9B0 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = countries.json; path = CountryList/countries.json; sourceTree = "<group>"; };
-		0EF0F51B1861FB0C007CF9B0 /* CountryListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryListDataSource.h; path = CountryList/CountryListDataSource.h; sourceTree = "<group>"; };
-		0EF0F51C1861FB0C007CF9B0 /* CountryListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryListDataSource.m; path = CountryList/CountryListDataSource.m; sourceTree = "<group>"; };
+		0EF0F51B1861FB0C007CF9B0 /* CountryDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CountryDataProvider.h; path = CountryList/CountryDataProvider.h; sourceTree = "<group>"; };
+		0EF0F51C1861FB0C007CF9B0 /* CountryDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryDataProvider.m; path = CountryList/CountryDataProvider.m; sourceTree = "<group>"; };
 		841387E31A6E2D700029D9B0 /* CountryCodesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountryCodesViewController.h; sourceTree = "<group>"; };
 		841387E41A6E2D700029D9B0 /* CountryCodesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountryCodesViewController.m; sourceTree = "<group>"; };
 		84BFBBCB1A6D3E2B00522493 /* NSDictionary+CountryCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+CountryCode.h"; path = "../NSDictionary+CountryCode.h"; sourceTree = "<group>"; };
@@ -172,8 +172,8 @@
 				84BFBBCB1A6D3E2B00522493 /* NSDictionary+CountryCode.h */,
 				84BFBBCC1A6D3E2B00522493 /* NSDictionary+CountryCode.m */,
 				0EF0F5141861F969007CF9B0 /* countries.json */,
-				0EF0F51B1861FB0C007CF9B0 /* CountryListDataSource.h */,
-				0EF0F51C1861FB0C007CF9B0 /* CountryListDataSource.m */,
+				0EF0F51B1861FB0C007CF9B0 /* CountryDataProvider.h */,
+				0EF0F51C1861FB0C007CF9B0 /* CountryDataProvider.m */,
 			);
 			name = CountryList;
 			sourceTree = "<group>";
@@ -281,7 +281,7 @@
 				0EF0F4EF1861F7EC007CF9B0 /* AppDelegate.m in Sources */,
 				0EF0F4EB1861F7EC007CF9B0 /* main.m in Sources */,
 				84BFBBCD1A6D3E2B00522493 /* NSDictionary+CountryCode.m in Sources */,
-				0EF0F51D1861FB0C007CF9B0 /* CountryListDataSource.m in Sources */,
+				0EF0F51D1861FB0C007CF9B0 /* CountryDataProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
